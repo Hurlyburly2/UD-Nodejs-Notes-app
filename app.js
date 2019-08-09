@@ -12,8 +12,8 @@ yargs.command({
     builder: {
         title: {
             describe: 'Note title',
-            demandOption: true,  // makes "title" a required field
-            type: 'string'      // validates for title as a string
+            demandOption: true,
+            type: 'string'
         },
         body: {
             describe: 'Note body',
@@ -29,8 +29,15 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function() {
-        console.log('Removing a note')
+    builder: {
+        title: {
+            describe: 'Title of note to remove',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        notes.removeNote(argv.title)
     }
 })
 
